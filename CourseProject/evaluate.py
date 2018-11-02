@@ -3,6 +3,22 @@ Evaluation script for the course project
 HOW TO USE:
 python ./evaluate.py <output_file> <test_file>
 
+<output_file> is a text file that contains the ranked list of
+image ids in the test set (you can include the probability values
+in the second column of each line)
+id1
+id2
+...
+idN
+
+<test_file> is a csv file including image ids and their gold labels
+For example:
+
+id1,1
+id2,0
+...
+idN,1
+
 References:
     1) https://multimediaeval.github.io/2017-Multimedia-Satellite-Task/
     2) https://www.slideshare.net/multimediaeval/mediaeval-2017-satellite-task-the-multimedia-satellite-task-at-mediaeval-2017-emergence-response-for-flooding-events-overview
