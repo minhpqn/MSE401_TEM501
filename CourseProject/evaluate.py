@@ -28,6 +28,8 @@ def average_precision_at_k(k, doc_labels):
         if p == 1:
             num_hits += 1
             score += num_hits / (i+1.0)
+    if num_hits == 0:
+        return 0.0
     return score/num_hits
 
 
