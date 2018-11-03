@@ -88,6 +88,7 @@ class TestEvalMeasure(TestCase):
         docs = [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1]
         print(average_precision_at_k(20, docs))
 
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("output_file", help="Submission result")
