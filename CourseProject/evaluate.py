@@ -49,6 +49,22 @@ def average_precision_at_k(k, doc_labels):
     return score/num_hits
 
 
+def report_result(ranked_gt_labels):
+    cutoff = 480
+    cutoff_vals = [50, 100, 250, 480]
+
+    avg_prec_at_k = 100*average_precision_at_k(cutoff, ranked_gt_labels)
+    print("AP@{} = {} %".format(cutoff, avg_prec_at_k))
+
+    scores = []
+    for k in cutoff_vals:
+        avg_prec = 100.0 * average_precision_at_k(k, ranked_gt_labels)
+        print('AP@%d = %f' % (k, avg_prec))
+        scores.append(avg_prec)
+    avg = numpy.mean(scores)
+    print("Mean AP@ [{}] = {}".format(", ".join([str(x) for x in cutoff_vals]), avg))
+
+
 class TestEvalMeasure(TestCase):
 
     def test_average_precision(self):
@@ -119,20 +135,7 @@ def main():
         print("Detailed classification report")
         print(metrics.classification_report(ranked_gt_labels, predicted_labels))
 
-    cutoff = 480
-    cutoff_vals = [50, 100, 250, 480]
-
-    avg_prec_at_k = 100*average_precision_at_k(cutoff, ranked_gt_labels)
-    print("AP@{} = {} %".format(cutoff, avg_prec_at_k))
-
-    scores = []
-    for k in cutoff_vals:
-        avg_prec = 100.0 * average_precision_at_k(k, ranked_gt_labels)
-        print('AP@%d = %f' % (k, avg_prec))
-        scores.append(avg_prec)
-    avg = numpy.mean(scores)
-    print("Mean AP@ [{}] = {}".format(", ".join([str(x) for x in cutoff_vals]), avg))
-
+    report_result(ranked_gt_labels)
 
 if __name__ == "__main__":
     main()
