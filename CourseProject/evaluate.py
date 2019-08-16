@@ -138,5 +138,6 @@ def main():
 
     report_result(ranked_gt_labels)
 
+
 if __name__ == "__main__":
     main()
